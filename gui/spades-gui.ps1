@@ -202,15 +202,21 @@ $btnRun.Add_Click({
     if (-not (Test-Path $spades)) { [System.Windows.Forms.MessageBox]::Show("Bundled SPAdes not found at:`n$spades",'SPAdes'); return }
     New-Item -ItemType Directory -Force -Path $out | Out-Null
 
-    $argv = New-Object System.Collections.ArrayList
-    [void]$argv.Add($spades)
+    # Build a single, properly-quoted argument string. Start-Process -ArgumentList with an
+    # ARRAY does not reliably quote elements containing spaces on Windows PowerShell 5.1, so a
+    # spaced path (e.g. an output folder "New folder", or an install under "Program Files")
+    # would split -- SPAdes then sees a bare "folder" arg and errors. Quoting each path fixes it.
+    $q = { param($s) '"' + $s + '"' }
+    $parts = New-Object System.Collections.ArrayList
+    [void]$parts.Add((& $q $spades))
     $flag = $modes[$cmbMode.SelectedItem]
-    if ($flag) { foreach ($f in $flag.Split(' ')) { [void]$argv.Add($f) } }
-    [void]$argv.Add('-1'); [void]$argv.Add($r1)
-    if ($r2) { [void]$argv.Add('-2'); [void]$argv.Add($r2) } else { [void]$argv.Add('-s'); [void]$argv.Add($r1) }
-    [void]$argv.Add('-o'); [void]$argv.Add($out)
-    [void]$argv.Add('-t'); [void]$argv.Add([string]$numT.Value)
-    [void]$argv.Add('-m'); [void]$argv.Add([string]$numM.Value)
+    if ($flag) { foreach ($f in $flag.Split(' ')) { if ($f) { [void]$parts.Add($f) } } }
+    [void]$parts.Add('-1'); [void]$parts.Add((& $q $r1))
+    if ($r2) { [void]$parts.Add('-2'); [void]$parts.Add((& $q $r2)) } else { [void]$parts.Add('-s'); [void]$parts.Add((& $q $r1)) }
+    [void]$parts.Add('-o'); [void]$parts.Add((& $q $out))
+    [void]$parts.Add('-t'); [void]$parts.Add([string]$numT.Value)
+    [void]$parts.Add('-m'); [void]$parts.Add([string]$numM.Value)
+    $argline = ($parts -join ' ')
 
     $script:outDir = $out
     $script:logPath = Join-Path $out 'gui_run.log'
@@ -218,13 +224,13 @@ $btnRun.Add_Click({
     Set-Content -Path $script:logPath -Value '' -Encoding utf8
     $script:logPos = 0
     $log.Clear()
-    $log.AppendText("> " + $python + " " + ($argv -join ' ') + "`r`n`r`n")
+    $log.AppendText("> " + (& $q $python) + " " + $argline + "`r`n`r`n")
     $btnRun.Enabled = $false; $btnOpen.Enabled = $false
     $prog.MarqueeAnimationSpeed = 30
     $status.Text = 'Running... (error correction + assembly can take several minutes)'
     $status.ForeColor = $NAVY
     try {
-        $script:proc = Start-Process -FilePath $python -ArgumentList $argv.ToArray() `
+        $script:proc = Start-Process -FilePath $python -ArgumentList $argline `
             -NoNewWindow -PassThru -RedirectStandardOutput $script:logPath -RedirectStandardError $errPath
         $timer.Start()
     } catch {
