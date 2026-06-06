@@ -56,18 +56,23 @@ UninstallDisplayIcon={sys}\cmd.exe
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
+Name: "desktopicon"; Description: "Create a desktop shortcut for the SPAdes app"; GroupDescription: "Shortcuts:"
 Name: "addtopath"; Description: "Add SPAdes to my PATH (run 'spades' from any terminal)"; GroupDescription: "Integration:"
 
 [Files]
 Source: "{#PayloadDir}\*"; DestDir: "{app}"; Flags: recursesubdirs createallsubdirs ignoreversion
 
 [Icons]
+; Graphical app (primary entry point for non-technical users) -- launched console-less via the VBS shim.
+Name: "{group}\SPAdes for Windows (app)"; Filename: "{sys}\wscript.exe"; Parameters: """{app}\gui\SPAdes-GUI.vbs"""; WorkingDir: "{app}\gui"; IconFilename: "{sys}\shell32.dll"; IconIndex: 13; Comment: "Assemble reads with a simple graphical interface"
+Name: "{autodesktop}\SPAdes for Windows"; Filename: "{sys}\wscript.exe"; Parameters: """{app}\gui\SPAdes-GUI.vbs"""; WorkingDir: "{app}\gui"; IconFilename: "{sys}\shell32.dll"; IconIndex: 13; Tasks: desktopicon
 Name: "{group}\SPAdes Command Prompt"; Filename: "{app}\spades-shell.bat"; WorkingDir: "{userdocs}"; IconFilename: "{sys}\cmd.exe"; Comment: "Open a terminal with SPAdes ready to use"
 Name: "{group}\SPAdes Read Me"; Filename: "{app}\README-WINDOWS.txt"
 Name: "{group}\Uninstall SPAdes"; Filename: "{uninstallexe}"
 
 [Run]
-Filename: "{app}\spades-shell.bat"; Description: "Open the SPAdes Command Prompt now"; Flags: postinstall skipifsilent nowait
+Filename: "{sys}\wscript.exe"; Parameters: """{app}\gui\SPAdes-GUI.vbs"""; Description: "Launch the SPAdes app now"; Flags: postinstall skipifsilent nowait
+Filename: "{app}\spades-shell.bat"; Description: "Open the SPAdes Command Prompt instead"; Flags: postinstall skipifsilent nowait unchecked
 
 [Code]
 const EnvironmentKey = 'Environment';

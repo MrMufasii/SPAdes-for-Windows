@@ -78,6 +78,15 @@ Info "Staging bin\ and share\ ..."
 Copy-Item (Join-Path $InstallTree 'bin')   (Join-Path $payload 'bin')   -Recurse -Force
 Copy-Item (Join-Path $InstallTree 'share') (Join-Path $payload 'share') -Recurse -Force
 
+# graphical front-end (PowerShell + WinForms; needs no extra runtime)
+$guiSrc = Join-Path (Split-Path (Split-Path $here -Parent) -Parent) 'gui'
+if (Test-Path $guiSrc) {
+    Copy-Item $guiSrc (Join-Path $payload 'gui') -Recurse -Force
+    Info "Staged GUI (gui\)."
+} else {
+    Write-Host "[installer] note: gui\ not found at $guiSrc (GUI shortcut will be dead)" -ForegroundColor DarkYellow
+}
+
 # The HMM databases (--bio / --corona) ship gzipped, and HMMER/Easel decompress them by
 # shelling out to an external 'gzip' which does not exist on a stock Windows machine. Ship
 # them decompressed so the HMM modes are self-contained. Uses .NET (no external gzip needed).

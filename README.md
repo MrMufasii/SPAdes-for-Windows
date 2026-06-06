@@ -18,9 +18,22 @@ end-to-end on real and simulated bacterial genomes.
 ## Quick start — one-click installer (nothing pre-installed)
 
 1. Download **[`dist/SPAdes-Windows-4.3.0-dev-Setup.exe`](dist/)**.
-2. Run it. Per-user install (no admin); optionally tick **“Add SPAdes to my PATH”**, and it adds a
-   **“SPAdes Command Prompt”** to the Start Menu.
-3. From that prompt (or any terminal, if you added it to PATH):
+2. Run it. Per-user install (no admin). It adds **“SPAdes for Windows (app)”** (graphical) and a
+   **“SPAdes Command Prompt”** to the Start Menu, plus an optional desktop shortcut; you can also
+   tick **“Add SPAdes to my PATH”**.
+
+Then use it either way:
+
+### Point-and-click app (recommended for non-technical users)
+
+Launch **“SPAdes for Windows”** from the Start Menu or desktop, then: choose your reads
+(forward / reverse), an output folder, and an assembly mode → click **Run assembly** and watch the
+live log. When it finishes, **Open output folder** for `contigs.fasta`. It's a minimal front-end
+that uses only Windows' built-in PowerShell/.NET — no extra runtime — and drives the bundled SPAdes.
+
+### Command line
+
+From the “SPAdes Command Prompt” (or any terminal, if you added it to PATH):
 
 ```bat
 spades --help
@@ -193,7 +206,10 @@ Metrics JSON for every panel live in [`docs/`](docs/) (`ecoli_realreads_metrics.
 
 ```
 SPAdes-for-Windows/
-├─ dist/SPAdes-Windows-4.3.0-dev-Setup.exe   # one-click installer (static exes + embedded Python)
+├─ dist/SPAdes-Windows-4.3.0-dev-Setup.exe   # one-click installer (static exes + embedded Python + GUI)
+├─ gui/                                       # minimal point-and-click front-end (PowerShell + WinForms)
+│  ├─ spades-gui.ps1                          # the app (no extra runtime; drives the bundled SPAdes)
+│  └─ SPAdes-GUI.vbs                          # console-less launcher
 ├─ scripts/
 │  ├─ setup_toolchain.ps1                     # portable MinGW-w64 + MinGit
 │  ├─ setup_spades.ps1                        # clone @67ab1c7, patch, build static, install
