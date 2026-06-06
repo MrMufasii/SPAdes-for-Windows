@@ -211,8 +211,15 @@ $btnRun.Add_Click({
     [void]$parts.Add((& $q $spades))
     $flag = $modes[$cmbMode.SelectedItem]
     if ($flag) { foreach ($f in $flag.Split(' ')) { if ($f) { [void]$parts.Add($f) } } }
-    [void]$parts.Add('-1'); [void]$parts.Add((& $q $r1))
-    if ($r2) { [void]$parts.Add('-2'); [void]$parts.Add((& $q $r2)) } else { [void]$parts.Add('-s'); [void]$parts.Add((& $q $r1)) }
+    if ($r2) {
+        # paired-end: -1/-2 must be added together (a lone -1 makes a paired library
+        # with a left file but no right -> "left != right paired reads")
+        [void]$parts.Add('-1'); [void]$parts.Add((& $q $r1))
+        [void]$parts.Add('-2'); [void]$parts.Add((& $q $r2))
+    } else {
+        # single-end / no mate: unpaired reads only
+        [void]$parts.Add('-s'); [void]$parts.Add((& $q $r1))
+    }
     [void]$parts.Add('-o'); [void]$parts.Add((& $q $out))
     [void]$parts.Add('-t'); [void]$parts.Add([string]$numT.Value)
     [void]$parts.Add('-m'); [void]$parts.Add([string]$numM.Value)
