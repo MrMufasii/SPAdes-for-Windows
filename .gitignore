@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.pyc
+
+# Local build trees are produced by the setup scripts under %LOCALAPPDATA%
+# (winlibs MinGW, spades-build, spades-install, spades-dist) and are not committed.
+# The only built artifact tracked here is dist/SPAdes-Windows-*-Setup.exe.
+*.log

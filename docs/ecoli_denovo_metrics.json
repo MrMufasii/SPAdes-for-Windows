@@ -1,0 +1,13 @@
+{
+  "reference": "E. coli K-12 MG1655 (NC_000913.3)",
+  "ref_len": 4641652,
+  "coverage": "30x",
+  "n_contigs": 145,
+  "n_contigs_ge1kb": 65,
+  "total_len": 4582250,
+  "largest": 327108,
+  "n50": 175917,
+  "l50": 10,
+  "identity_pct": 99.9971,
+  "genome_fraction_pct": 99.7099
+}

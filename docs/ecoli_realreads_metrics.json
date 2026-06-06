@@ -1,0 +1,13 @@
+{
+  "reference": "E. coli K-12 MG1655 (NC_000913.3)",
+  "source": "ERR1473771 - real Illumina HiSeq 2500 2x100, verified MG1655 K-12 background (ENA), default mode (BayesHammer EC + assembly)",
+  "ref_len": 4641652,
+  "n_contigs": 185,
+  "n_contigs_ge1kb": 77,
+  "total_len": 4564471,
+  "largest": 356696,
+  "n50": 117598,
+  "l50": 12,
+  "identity_pct": 99.7316,
+  "genome_fraction_pct": 99.2109
+}

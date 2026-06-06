@@ -1,0 +1,22 @@
+{
+  "full_580kb": {
+    "label": "M. genitalium G37 full chromosome (NC_000908.2, 580 kb)",
+    "n_contigs": 1,
+    "total_len": 580060,
+    "ref_len": 580076,
+    "largest": 580060,
+    "n50": 580060,
+    "identity_pct": 100.0,
+    "genome_fraction_pct": 99.9859
+  },
+  "slice_250kb": {
+    "label": "M. genitalium 250 kb region",
+    "n_contigs": 1,
+    "total_len": 249988,
+    "ref_len": 250000,
+    "largest": 249988,
+    "n50": 249988,
+    "identity_pct": 100.0,
+    "genome_fraction_pct": 99.9952
+  }
+}

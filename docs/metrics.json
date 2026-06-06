@@ -1,0 +1,15 @@
+{
+  "title": "Phage lambda (48.5 kb, native Windows SPAdes)",
+  "num_contigs": 1,
+  "total_length": 48457,
+  "reference_length": 48502,
+  "largest_contig": 48457,
+  "N50": 48457,
+  "N90": 48457,
+  "L50": 1,
+  "GC_percent": 49.84,
+  "genome_fraction_percent": 99.885,
+  "identity_percent": 99.967,
+  "assembly_vs_reference_ratio": 0.9991,
+  "mean_coverage": 21.7
+}
