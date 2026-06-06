@@ -110,6 +110,7 @@ all 13 executables.
 | File | What it is |
 |------|------------|
 | `spades-mingw.patch` | `git diff` against ablab/spades `67ab1c76` (VERSION 4.3.0-dev). ~102 files. Apply with `git apply`. |
+| `spades-src-67ab1c7.tar.gz` | Vendored pinned upstream source (`git archive` of `67ab1c76`, symlinks de-referenced). `setup_spades.ps1` uses it so a build never depends on ablab/spades staying available; the patch applies on top. |
 | `shim/` | Hand-written POSIX shim headers/sources (copied to `%LOCALAPPDATA%\spades-shim`, force-included via `-include mingw_prelude.h`). |
 
 ## Why a fork was needed (no native-Windows SPAdes exists upstream)

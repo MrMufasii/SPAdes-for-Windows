@@ -80,12 +80,31 @@ if (-not (Test-Path "$Bzip2Dir\libbz2.a")) {
 }
 if (-not (Test-Path "$Bzip2Dir\libbz2.a")) { Die "failed to build libbz2.a" }
 
-# --- 3. clone SPAdes at the pinned commit ---
-if (-not (Test-Path "$BuildRoot\.git")) {
-    Info "Cloning ablab/spades @ $SpadesCommit"
+# --- 3. obtain SPAdes source at the pinned commit ---
+# Prefer the VENDORED source snapshot so a build never depends on ablab/spades staying
+# available (or the pinned commit remaining fetchable). The snapshot is a `git archive`
+# of $SpadesCommit; we re-init a tiny git repo around it so step 4 (`git apply` /
+# `git checkout -- .`) and the build's revision detection keep working. `git add -f` is
+# required: SPAdes tracks a few files its own .gitignore matches (e.g. ext/src/hmmer/src/build.c).
+$srcTar = Join-Path $patchDir "spades-src-$($SpadesCommit.Substring(0,7)).tar.gz"
+if (Test-Path "$BuildRoot\.git") {
+    Info "Reusing existing SPAdes source at $BuildRoot"
+} elseif (Test-Path $srcTar) {
+    Info "Using bundled SPAdes source ($SpadesCommit) -> $(Split-Path $srcTar -Leaf)"
+    New-Item -ItemType Directory -Force -Path $BuildRoot | Out-Null
+    & tar -xzf $srcTar -C $BuildRoot
+    if ($LASTEXITCODE -ne 0) { Die "failed to extract bundled SPAdes source" }
+    Push-Location $BuildRoot
+    & git init -q
+    & git add -f .
+    & git -c user.email=build@localhost -c user.name=spades-windows commit -q -m "SPAdes $SpadesCommit (vendored snapshot)"
+    Pop-Location
+} else {
+    Info "Cloning ablab/spades @ $SpadesCommit (no bundled source found)"
     & git clone https://github.com/ablab/spades.git $BuildRoot
+    if ($LASTEXITCODE -ne 0) { Die "git clone failed (ablab/spades unreachable and no bundled source)" }
     Push-Location $BuildRoot; & git checkout $SpadesCommit; Pop-Location
-} else { Info "Reusing existing clone at $BuildRoot" }
+}
 
 # --- 4. apply the MinGW source patch ---
 Info "Applying spades-mingw.patch"

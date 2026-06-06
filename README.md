@@ -110,7 +110,7 @@ Everything installs into your user profile; **no admin, no Visual Studio**.
 ```mermaid
 flowchart TD
     A["scripts/setup_toolchain.ps1<br/>winlibs MinGW-w64 + MinGit"] --> B["scripts/setup_spades.ps1"]
-    B --> B1["clone ablab/spades @ 67ab1c7"]
+    B --> B1["vendored source snapshot @ 67ab1c7<br/>(no ablab dependency; clone is fallback)"]
     B1 --> B2["apply spades-mingw.patch + lay down POSIX shim"]
     B2 --> B3["configure: Ninja, -static, _FILE_OFFSET_BITS=64, static libdl"]
     B3 --> B4["build 13 spades-*.exe → %LOCALAPPDATA%\\spades-install"]
@@ -123,6 +123,12 @@ scripts\setup_toolchain.ps1                       # portable MinGW-w64 + MinGit
 scripts\setup_spades.ps1                          # clone @67ab1c7, patch, build static, install
 scripts\installer\build_spades_installer.ps1      # -> dist\SPAdes-Windows-<ver>-Setup.exe (needs Inno Setup 6)
 ```
+
+> **Self-contained builds.** The pinned upstream SPAdes source is vendored as
+> [`scripts/spades-patch/spades-src-67ab1c7.tar.gz`](scripts/spades-patch/) (a 17 MB `git archive`
+> of commit `67ab1c7`), so a build **never depends on ablab/spades staying online or unchanged** —
+> `setup_spades.ps1` extracts the snapshot and applies the patch on top, falling back to a clone
+> only if the snapshot is absent.
 
 `setup_spades.ps1` produces the canonical install layout (`bin\` + `share\spades\`) at
 `%LOCALAPPDATA%\spades-install`. The binaries are static, so you can run them with stock Windows
@@ -194,6 +200,7 @@ SPAdes-for-Windows/
 │  ├─ installer/                              # build_spades_installer.ps1 + spades_windows.iss
 │  ├─ spades-patch/
 │  │  ├─ spades-mingw.patch                   # git diff vs ablab/spades@67ab1c7 (~102 files)
+│  │  ├─ spades-src-67ab1c7.tar.gz            # vendored pinned upstream source (self-contained build)
 │  │  ├─ shim/                                # hand-written POSIX shim
 │  │  └─ README.md                            # the port, fix-by-fix (LLP64, LFS, strict-aliasing, …)
 │  └─ validation/validate_ecoli.py            # alignment-free de novo validation
