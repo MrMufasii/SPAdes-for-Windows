@@ -1,5 +1,7 @@
 # SPAdes for Windows
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20582190.svg)](https://doi.org/10.5281/zenodo.20582190)
+
 > The first **native-Windows** build of the [SPAdes](https://github.com/ablab/spades) genome
 > assembler — **no WSL, no Docker, no VM, no Linux**. Nothing to pre-install (not even Python or a
 > compiler). All 13 `spades-*` executables are **fully static** — zero MinGW/runtime DLLs.
@@ -233,12 +235,14 @@ SPAdes-for-Windows/
   19(5):455–477. doi:[10.1089/cmb.2012.0021](https://doi.org/10.1089/cmb.2012.0021)
   (see also Prjibelski et al., *Curr. Protoc. Bioinformatics* 2020,
   doi:[10.1002/cpbi.102](https://doi.org/10.1002/cpbi.102)).
-- **this Windows port** — Sheridan, A. *SPAdes for Windows (native port).*
-  https://github.com/MrMufasii/SPAdes-for-Windows — DOI: _pending (Zenodo)_.
-  A machine-readable [`CITATION.cff`](CITATION.cff) is included.
+- **this Windows port** — Sheridan, A. *SPAdes for Windows (native port).* Zenodo.
+  doi:[10.5281/zenodo.20582190](https://doi.org/10.5281/zenodo.20582190) —
+  https://github.com/MrMufasii/SPAdes-for-Windows. A machine-readable
+  [`CITATION.cff`](CITATION.cff) is included.
 
 > Example methods sentence: *“Assembly was performed with SPAdes (Bankevich et al.,
-> 2012) via the native-Windows port (Sheridan; DOI…).”*
+> 2012) via the native-Windows port (Sheridan, 2026;
+> doi:10.5281/zenodo.20582190).”*
 
 ---
 

@@ -13,6 +13,7 @@ authors:
 type: software
 license: GPL-2.0
 version: "1.0.0"
+doi: "10.5281/zenodo.20582190"
 repository-code: "https://github.com/MrMufasii/SPAdes-for-Windows"
 url: "https://github.com/MrMufasii/SPAdes-for-Windows"
 keywords:
