@@ -1,0 +1,63 @@
+cff-version: 1.2.0
+message: >-
+  If you use this Windows port, please cite the upstream SPAdes paper AND this
+  repository. See the "Citing" section of the README.
+title: "SPAdes for Windows (native port)"
+abstract: >-
+  A native-Windows build of the SPAdes genome assembler toolkit, compiled to run
+  natively on Windows without WSL, Docker, Cygwin or a Linux VM.
+authors:
+  - family-names: Sheridan
+    given-names: Alex
+    alias: MrMufasii
+type: software
+license: GPL-2.0
+version: "1.0.0"
+repository-code: "https://github.com/MrMufasii/SPAdes-for-Windows"
+url: "https://github.com/MrMufasii/SPAdes-for-Windows"
+keywords:
+  - bioinformatics
+  - genome assembly
+  - SPAdes
+  - Windows
+references:
+  - type: article
+    title: "SPAdes: a new genome assembly algorithm and its applications to single-cell sequencing"
+    authors:
+      - family-names: Bankevich
+        given-names: Anton
+      - family-names: Nurk
+        given-names: Sergey
+      - family-names: Antipov
+        given-names: Dmitry
+      - family-names: Gurevich
+        given-names: Alexey A.
+      - family-names: Dvorkin
+        given-names: Mikhail
+      - family-names: Kulikov
+        given-names: Alexander S.
+      - family-names: Lesin
+        given-names: Valery M.
+      - family-names: Nikolenko
+        given-names: Sergey I.
+      - family-names: Pham
+        given-names: Son
+      - family-names: Prjibelski
+        given-names: Andrey D.
+      - family-names: Pyshkin
+        given-names: Alexey V.
+      - family-names: Sirotkin
+        given-names: Alexander V.
+      - family-names: Vyahhi
+        given-names: Nikolay
+      - family-names: Tesler
+        given-names: Glenn
+      - family-names: Alekseyev
+        given-names: Max A.
+      - family-names: Pevzner
+        given-names: Pavel A.
+    journal: "Journal of Computational Biology"
+    year: 2012
+    volume: "19"
+    issue: "5"
+    doi: "10.1089/cmb.2012.0021"

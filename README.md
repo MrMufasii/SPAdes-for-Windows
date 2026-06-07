@@ -224,6 +224,24 @@ SPAdes-for-Windows/
 └─ LICENSE                                    # GPLv2
 ```
 
+## Citing
+
+**If you use this port, please cite both the upstream tool and this repository:**
+
+- **SPAdes** — Bankevich A. *et al.* (2012) *SPAdes: a new genome assembly algorithm and
+  its applications to single-cell sequencing.* **Journal of Computational Biology**
+  19(5):455–477. doi:[10.1089/cmb.2012.0021](https://doi.org/10.1089/cmb.2012.0021)
+  (see also Prjibelski et al., *Curr. Protoc. Bioinformatics* 2020,
+  doi:[10.1002/cpbi.102](https://doi.org/10.1002/cpbi.102)).
+- **this Windows port** — Sheridan, A. *SPAdes for Windows (native port).*
+  https://github.com/MrMufasii/SPAdes-for-Windows — DOI: _pending (Zenodo)_.
+  A machine-readable [`CITATION.cff`](CITATION.cff) is included.
+
+> Example methods sentence: *“Assembly was performed with SPAdes (Bankevich et al.,
+> 2012) via the native-Windows port (Sheridan; DOI…).”*
+
+---
+
 ## License
 
 The SPAdes port is distributed as a **patch** against
