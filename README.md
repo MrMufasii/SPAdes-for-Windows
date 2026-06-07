@@ -6,6 +6,12 @@
 ![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6?logo=windows&logoColor=white)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20582190.svg)](https://doi.org/10.5281/zenodo.20582190)
 
+**Bundled stack** (all native Windows):<br>
+![SPAdes](https://img.shields.io/badge/SPAdes-4.3.0--dev-1b2a4a)
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
+![Toolchain](https://img.shields.io/badge/MinGW--w64-x86__64-f34b7d)
+![zlib](https://img.shields.io/badge/zlib-static-1aa6a6)
+
 > The first **native-Windows** build of the [SPAdes](https://github.com/ablab/spades) genome
 > assembler — **no WSL, no Docker, no VM, no Linux**. Nothing to pre-install (not even Python or a
 > compiler). All 13 `spades-*` executables are **fully static** — zero MinGW/runtime DLLs.
