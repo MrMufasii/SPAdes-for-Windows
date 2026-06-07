@@ -1,5 +1,9 @@
 # SPAdes for Windows
 
+[![Release](https://img.shields.io/github/v/release/MrMufasii/SPAdes-for-Windows?label=release&color=2f6db5)](https://github.com/MrMufasii/SPAdes-for-Windows/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/MrMufasii/SPAdes-for-Windows/total?label=downloads&color=16a34a)](https://github.com/MrMufasii/SPAdes-for-Windows/releases)
+[![License: GPL-2.0](https://img.shields.io/badge/License-GPLv2-blue.svg)](LICENSE)
+![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6?logo=windows&logoColor=white)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20582190.svg)](https://doi.org/10.5281/zenodo.20582190)
 
 > The first **native-Windows** build of the [SPAdes](https://github.com/ablab/spades) genome
